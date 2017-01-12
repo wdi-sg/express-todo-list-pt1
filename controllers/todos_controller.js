@@ -1,5 +1,12 @@
 const Todo = require('../models/todo')
 
+// TODO. import express and create a Router, replace the methods below with routes e.g.
+// router.post('/', function(req,res) => {
+//  Todo.create(req.body, function (err, todo) {
+//    res.json(todo)
+//  }
+// })
+
 function create (params) {
   Todo.create(params, function (err, todo) {
     if (err) {
