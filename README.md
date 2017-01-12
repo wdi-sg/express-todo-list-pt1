@@ -6,7 +6,6 @@ So far we've built a TODO list application that uses the command line as the use
 
 * Fork and clone this repository
 * Run `npm install` to install dependencies
-* `npm test` - run test suite
 * `npm start` - run the server
 
 
