@@ -1,57 +1,85 @@
 const Todo = require('../models/todo')
+const express = require('express')
+const app = express()
+const router = express.Router()
 
-// TODO. import express and create a Router, replace the methods below with routes e.g.
-// router.post('/', function(req,res) => {
-//  Todo.create(req.body, function (err, todo) {
-//    res.json(todo)
-//  }
-// })
+const mongoose = require('mongoose')
+const dbURI = 'mongodb://localhost/test'
 
-function create (params) {
-  Todo.create(params, function (err, todo) {
-    if (err) {
-      console.log(err)
-      return
-    }
+const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({extended: false}))
+
+// create
+router.post('/', function (req, res) {
+  var newTodo = Todo()
+
+  newTodo.name = req.body.name
+  newTodo.description = req.body.description || ''
+  newTodo.completed = req.body.completed || false
+
+  console.log(newTodo)
+  if (!mongoose.connection.db) mongoose.connect(dbURI)
+  newTodo.save(function (err) {
+    if (err) console.error(err)
+    console.log('saved')
+    mongoose.disconnect()
+  })
+})
+
+// index
+router.get('/', function (req, res) {
+  if (!mongoose.connection.db) mongoose.connect(dbURI)
+  Todo.find({}, function (err, data) {
+    if (err) console.error(err)
+    res.render('index', {todoList: data})
+    mongoose.disconnect()
+  })
+})
+
+// show
+router.get('/show/:id', function (req, res) {
+  if (!mongoose.connection.db) mongoose.connect(dbURI)
+  Todo.findById(req.params.id, function (err, data) {
+    if (err) console.error(err)
+    res.render('show', {todo: data})
+    mongoose.disconnect()
+  })
+})
+
+// update
+router.post('/showUpdate', function (req, res) {
+  res.redirect('/update/' + req.body.id)
+})
+
+router.get('/update/:id', function (req, res) {
+  if (!mongoose.connection.db) mongoose.connect(dbURI)
+  Todo.findById(req.params.id, function (err, data) {
+    if (err) console.error(err)
+    console.log(data)
+    res.render('update', {updateTodo: data})
+    mongoose.disconnect()
+  })
+})
+
+router.post('/todoUpdated', function (req, res) {
+  if (!mongoose.connection.db) mongoose.connect(dbURI)
+  Todo.findOneAndUpdate({ _id: req.body.id }, req.body, function (err, todo) {
+    if (err) console.error(err)
     console.log(todo)
+    mongoose.disconnect()
   })
-}
+  res.redirect('/')
+})
 
-function list () {
-  Todo.find({}, function (err, todos) {
-    if (err) {
-      console.log(err)
-      return
-    }
-    console.log(todos)
+// remove
+router.post('/removeTodo', function (req, res) {
+  if (!mongoose.connection.db) mongoose.connect(dbURI)
+  Todo.findOneAndRemove({ _id: req.body.id }, function (err) {
+    if (err) console.error(err)
+    console.log('Todo deleted!')
+    mongoose.disconnect()
   })
-}
+  res.redirect('/')
+})
 
-function show (id) {
-  Todo.findById(id, function (err, todo) {
-    if (err) return console.log(err)
-    console.log(todo)
-  })
-}
-
-function update (id, params) {
-  Todo.findOneAndUpdate({ _id: id }, params, function (err, todo) {
-    if (err) console.log(err)
-    console.log(todo)
-  })
-}
-
-function destroy (id) {
-  Todo.findOneAndRemove({ _id: id }, function (err) {
-    if (err) console.log(err)
-    console.log('User deleted!')
-  })
-}
-
-module.exports = {
-  create,
-  list,
-  show,
-  update,
-  destroy
-}
+module.exports = router

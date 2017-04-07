@@ -1,0 +1,26 @@
+<h1>Update a Todo</h1>
+
+<table id="inputTable" class="tables">
+    <thead>
+        <tr>
+            <th>Update Todo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <form method="POST" action="/todoUpdated">
+                <td><input type="text" name="name" value=<%= updateTodo.name %>></td>
+                <td><input type="text" name="description" value=<%= updateTodo.description %>></td>
+                <td><input type="text" name="completed" value=<%= updateTodo.completed %>></td>
+                <td>
+                    <button type="submit" value=<%- updateTodo.id %> name='id'>Update</button>
+                </td>
+            </form>
+            <form method="GET" action="/">
+                <td>
+                    <button type="submit">Cancel</button>
+                </td>
+            </form>
+        </tr>
+    </tbody>
+</table>

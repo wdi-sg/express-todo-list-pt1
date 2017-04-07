@@ -1,0 +1,26 @@
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Completed</th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td><%= todo.name %></td>
+                <td><%= todo.description %></td>
+                <td><%= todo.complete %></td>
+                <td>
+                    <form method="POST" action="/removeHome/">
+                        <button value=<%- todo.id %> name='id'>Remove</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="POST" action="/showUpdate">
+                        <button value=<%- todo.id %> name='id'>Update</button>
+                    </form>
+                </td>
+            </tr>
+    </tbody>
+</table>
