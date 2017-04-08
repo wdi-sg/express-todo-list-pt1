@@ -1,5 +1,5 @@
 <h1>Todos</h1>
-<form method="POST" action="/createTodo">
+<form method="POST" action="/todos">
     <table id="inputTable" class="tables">
         <thead>
             <tr>
@@ -33,12 +33,12 @@
                 <td><%= todo.description %></td>
                 <td><%= todo.completed %></td>
                 <td>
-                    <form method="POST" action="/removeTodo">
+                    <form method="POST" action="/todoremove">
                         <button class="bluebutton" value=<%- todo.id %> name='id'>Remove</button>
                     </form>
                 </td>
                 <td>
-                    <form method="POST" action="/showUpdate">
+                    <form method="POST" action="/todoUpdate">
                         <button value=<%- todo.id %> name='id'>View/Update</button>
                     </form>
                 </td>

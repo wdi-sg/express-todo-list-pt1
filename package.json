@@ -4,7 +4,7 @@
   "description": "Express Todo List",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "nodemon index",
     "test": "node test/todo_tests.js"
   },
   "repository": {
@@ -16,6 +16,7 @@
     "ejs": "^2.5.6",
     "express": "^4.15.2",
     "express-ejs-layouts": "^2.3.0",
+    "mongoose": "^4.9.3",
     "nodemon": "^1.11.0",
     "uuid": "^3.0.1"
   },
