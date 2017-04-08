@@ -1,0 +1,30 @@
+<h1>ALL TODOS</h1>
+
+<table class="all">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Completed</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% todoList.forEach(function(todo) { %>
+            <tr>
+                <td><%= todo.name %></td>
+                <td><%= todo.description %></td>
+                <td><%= todo.completed %></td>
+                <td>
+                    <form method="POST" action="/deleteTodo">
+                        <button value=<%- todo.id %> name='id'>Remove</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="POST" action="/showAndUpdateTodo">
+                        <button value=<%- todo.id %> name='id'>View/Update</button>
+                    </form>
+                </td>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>

@@ -4,4 +4,54 @@
 
 body {
   background-color: rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+div {
+  justify-content: center;
+  position: fixed;
+}
+
+ul {
+  padding: 10px;
+  background-color: gold;
+}
+
+li {
+  display: block;
+  font-weight: 700;
+  margin: 30px 10px;
+}
+
+.welcome {
+  font-size: 80px;
+}
+
+table {
+  width: 70%;
+}
+
+th, td {
+  width: 20%;
+  text-align: center;
+}
+
+.create th {
+  width: 33%;
+}
+
+.create td {
+  width: 33%;
+}
+
+button {
+  width: 80%;
+}
+
+.create button {
+  width: 100%;
 }
