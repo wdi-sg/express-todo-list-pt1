@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const port = 4000
 const path = require('path')
+const methodOverride = require('method-override')
 
 // connect to db
 const mongoose = require('mongoose')
@@ -16,6 +17,7 @@ app.set('view engine', 'ejs')
 const ejsLayouts = require('express-ejs-layouts')
 app.use(ejsLayouts)
 app.use(express.static(path.join(__dirname, '/public')))
+app.use(methodOverride('_method'))
 
 // handle the post request
 const bodyParser = require('body-parser')

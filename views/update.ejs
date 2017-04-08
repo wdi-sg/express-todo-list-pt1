@@ -1,4 +1,4 @@
-<h1>View/Update Todo</h1>
+<h1>EDIT TODO</h1>
 
 <table>
     <thead>
@@ -6,19 +6,21 @@
             <th>Name</th>
             <th>Description</th>
             <th>Completed</th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <form method="POST" action="/todoUpdated">
+            <form method="POST" action="/todos?_method=PUT">
                 <td><input type="text" placeholder="Name" name="name" value=<%= updateTodo.name %>></td>
                 <td><input type="text" placeholder="Description" name="description" value=<%= updateTodo.description %>></td>
-                <td><input type="text" placeholder="Completed?" name="completed" value=<%= updateTodo.completed %>></td>
+                <td><%= updateTodo.completed %></td>
                 <td>
                     <button type="submit" value=<%- updateTodo.id %> name='id'>Update</button>
                 </td>
             </form>
-            <form method="GET" action="/">
+            <form method="GET" action="/todos">
                 <td>
                     <button type="submit">Cancel</button>
                 </td>

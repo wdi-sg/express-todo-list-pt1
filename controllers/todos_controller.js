@@ -10,7 +10,9 @@ router.get('/', function (req, res) {
 router.get('/todos', function (req, res) {
   Todo.find({}, function (err, data) {
     if (err) console.error(err)
-    res.render('todos', {todoList: data})
+    var completed = data.filter(function (item) { return item.completed === true })
+    var notCompleted = data.filter(function (item) { return item.completed === false })
+    res.render('todos', {todoCompleted: completed, todoNotCompleted: notCompleted})
   })
 })
 
@@ -21,56 +23,49 @@ router.get('/todos/new', function (req, res) {
 
 router.post('/todos', function (req, res) {
   var newTodo = Todo()
-  console.log(req.body)
   newTodo.name = req.body.name
   newTodo.description = req.body.description || ''
   newTodo.completed = false
-
-  console.log('created' + newTodo)
   Todo.create(newTodo, function (err, data) {
     if (err) console.error(err)
-    console.log('saved')
     res.redirect('/todos/' + data.id)
   })
 })
 
 // update/show
-router.post('/showAndUpdateTodo', function (req, res) {
-  res.redirect('/todos/' + req.body.id)
-})
-
 router.get('/todos/:id', function (req, res) {
   Todo.findById(req.params.id, function (err, data) {
     if (err) console.error(err)
-    console.log(data)
+    res.render('show', {showTodo: data})
+  })
+})
+
+router.post('/showAndUpdateTodo', function (req, res) {
+  res.redirect('/todos/' + req.body.id + '/edit')
+})
+
+router.get('/todos/:id/edit', function (req, res) {
+  Todo.findById(req.params.id, function (err, data) {
+    if (err) console.error(err)
     res.render('update', {updateTodo: data})
   })
 })
 
-router.post('/todoUpdated', function (req, res) {
+router.put('/todos', function (req, res) {
+  console.log(req.body)
   Todo.findOneAndUpdate({ _id: req.body.id }, req.body, function (err, todo) {
     if (err) console.error(err)
-    console.log('updated' + todo)
+    // res.redirect('/todos/' + req.body.id)
+    res.redirect('/todos')
   })
-  res.redirect('/todos')
-})
-
-router.post('/completeTodo', function (req, res) {
-  console.log(req.body.id)
-  Todo.findOneAndUpdate({ _id: req.body.id }, { $set: { completed: true } }, function (err, todo) {
-    if (err) console.error(err)
-    console.log('updated' + todo)
-  })
-  // res.redirect('/todos')
 })
 
 // remove
-router.post('/deleteTodo', function (req, res) {
+router.delete('/todo', function (req, res) {
   Todo.findOneAndRemove({ _id: req.body.id }, function (err) {
     if (err) console.error(err)
-    console.log('Todo deleted!')
   })
-  res.redirect('/')
+  res.redirect('/todos')
 })
 
 module.exports = router

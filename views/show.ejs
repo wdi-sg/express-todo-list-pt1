@@ -1,0 +1,31 @@
+<h1>TODO</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Completed</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><%= showTodo.name %></td>
+            <td><%= showTodo.description %></td>
+            <td><%= showTodo.completed %></td>
+            <td>
+                <form method="POST" action="/showAndUpdateTodo">
+                    <button value=<%- showTodo.id %> name='id'>View/Update</button>
+                </form>
+            </td>
+            <td>
+                <form method="POST" action="/todo?_method=DELETE">
+                    <button value=<%- showTodo.id %> name='id'>Remove</button>
+                </form>
+            </td>
+
+        </tr>
+    </tbody>
+</table>

@@ -6,52 +6,106 @@ body {
   background-color: rgba(0, 0, 0, 0.1);
   display: flex;
   flex-flow: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  align-content: center;
+  padding: 0;
+  margin: 0;
 }
 
-div {
+.nav {
+  align-content: center;
+  align-items: center;
   justify-content: center;
+  flex-flow: row;
   position: fixed;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
 }
 
 ul {
-  padding: 10px;
+  padding: 16px;
   background-color: gold;
 }
 
 li {
-  display: block;
+  display: inline-block;
   font-weight: 700;
-  margin: 30px 10px;
+  font-size: 16px;
+  margin: 0px 32px;
+}
+
+.home {
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .welcome {
   font-size: 80px;
 }
 
+h1 {
+  margin: 80px 0 40px 0;
+}
+
+h2 {
+  padding: 20px;
+  border-radius: 20px;
+  background-color: red;
+}
+
+h2 a {
+  color: white;
+}
+
+.allTodos {
+  display: flex;
+  flex-flow: row;
+  width: 100%;
+}
+
+.notCompleted, .completed {
+  width: 50%;
+}
+
 table {
-  width: 70%;
+  width: 100%;
+}
+
+tr {
+  display: flex;
+  align-items: baseline;
 }
 
 th, td {
   width: 20%;
   text-align: center;
+  padding: 0;
+  margin: 0px 8px;
+}
+
+th {
+  margin: 12px 8px;
 }
 
 .create th {
-  width: 33%;
+  width: 33.33%;
 }
 
 .create td {
-  width: 33%;
+  width: 33.33%;
 }
 
 button {
   width: 80%;
+  padding: 0;
+  margin: 0;
 }
 
-.create button {
+input {
   width: 100%;
 }
