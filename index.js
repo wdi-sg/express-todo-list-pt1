@@ -27,6 +27,10 @@ if (!mongoose.connection.db) mongoose.connect(dbURI)
 
 app.use('/', todosController)
 
+app.use(function (req, res) {
+  res.render('index')
+})
+
 app.listen(port, function () {
   console.log('listening on ' + port)
 })
