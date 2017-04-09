@@ -1,0 +1,68 @@
+<div id="container">
+    <h1>My Todo List<h1>
+<div id=" TodoList">
+<form>
+<table class="table table-striped">
+<thead>
+  <tr>
+    <th>#</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Completed</th>
+</tr>
+</thead>
+<tbody>
+
+  <% allTodos.forEach(function(todos, index){ %>
+<tr>
+  <td><%- index + 1  %></td>
+  <td><%- todos.name %></td>
+  <td><%- todos.description %></td>
+  <td><%- todos.completed %></td>
+  <td>
+  <form action="/remove" method="POST">
+  <button value="<%-todos._id%>" name ="remove" type="submit">Remove
+    </button>
+    </form>
+    </td>
+    </tr>
+    <% }) %>
+        </tbody>
+        </table>
+        </form>
+</div>
+
+<div id="add-container">
+    <h2>Add New Todo</h2>
+    <form action="/create" method="POST">
+        <input type="text" name="name" placeholder="Name">
+        <input type="text" name="description" placeholder="Description">
+        <input type="text" name="completed" placeholder="Completed">
+        <button type="submit">Create</button>
+    </form>
+</div>
+
+<div id="find-container">
+  <form action="/findid" method="POST">
+    <label for="idSearch">Search For ID</label>
+    <input type="text" name="idSearch" id="idSearch" placeholder="Input ID">
+    <button type="submit">Search</button>
+  </form>
+</div>
+
+<div id="list-container">
+    <form action="/listall" method="GET">
+        <button type="submit" name="listall">List All</button>
+    </form>
+</div>
+<div id="update-container">
+  <h2>Update Todo</h2>
+    <form action='/update' method="POST">
+      <input type="text" name="idSearch" placeholder="Input ID">
+      <input type="text" name="name" placeholder="Name">
+      <input type="text" name="description" placeholder="Description">
+      <input type="text" name="completed" placeholder="Completed">
+      <button type="submit">Update</button>
+    </form>
+</div>
+</div>
