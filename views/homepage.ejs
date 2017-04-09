@@ -1,0 +1,52 @@
+<%# </body>
+</html>%>
+
+<form action = "/" method = "post">
+  <div class="form-group">
+    <label for="Name">Name</label>
+    <input type="text" name="name" class="form-control" id="name" placeholder="Name of todo">
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <input type="text" name="description" class="form-control" id="description" placeholder="Description of todo">
+  </div>
+  <div class="form-group">
+    <label for="description">Completed</label>
+    <input type="text" name="completed" class="form-control" id="completed" placeholder="Description of todo">
+  </div>
+<button type="submit" class="btn btn-default">Create</button>
+
+
+<h1>Current Todos</h1>
+
+<table id="homes" class="table">
+          <thead>
+              <tr>
+                  <th>Name of Todo</th>
+                  <th>Description</th>
+                  <th>Completed</th>
+                  <th></th>
+                  <th></th>
+              </tr>
+          </thead>
+          <tbody>
+            <% newTodos.forEach (function(todo){ %>
+              <tr>
+                  <td><%-todo.name%></td>
+                  <td><%-todo.description%></td>
+                  <td><%-todo.completed%></td>
+                  <td>
+                    <form method="POST" action="/">
+                        <button value=<%- todo.id %> name='id'>View/Update</button>
+                    </form>
+                  </td>
+                  <td>
+                  <form method="post" action="/">
+                               <button value=<%- todo.id %> name='id'>Remove</button>
+                     </form>
+                  </td>
+              </tr>
+              <% }) %>
+
+          </tbody>
+      </table>
