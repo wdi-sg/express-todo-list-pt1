@@ -13,8 +13,8 @@
     <tbody>
         <tr>
             <form method="POST" action="/todos?_method=PUT">
-                <td><input type="text" placeholder="Name" name="name" value=<%= updateTodo.name %>></td>
-                <td><input type="text" placeholder="Description" name="description" value=<%= updateTodo.description %>></td>
+                <td><input type="text" placeholder="Name" name="name" value="<%- updateTodo.name %>"></td>
+                <td><input type="text" placeholder="Description" name="description" value="<%- updateTodo.description %>"></td>
                 <td><%= updateTodo.completed %></td>
                 <td>
                     <button type="submit" value=<%- updateTodo.id %> name='id'>Update</button>

@@ -1,21 +1,23 @@
 <h1>NEW TODO</h1>
-<form id="createForm" method="POST" action="/todos">
-    <table class="create" class="tables">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><input type="text" name="name" placeholder="Name"></td>
-                <td><input type="text" name="description" placeholder="Description"></td>
-                <td>
-                    <button id="createButton" type="button">Create Todo</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</form>
+<div class="new">
+    <form id="createForm" method="POST" action="/todos">
+        <table class="create">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" name="name" placeholder="Name"></td>
+                    <td><input type="text" name="description" placeholder="Description"></td>
+                    <td>
+                        <button id="createButton" type="button">Create Todo</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
