@@ -1,12 +1,12 @@
 const express = require('express')
 const app = express()
-const port = 4000
+const port = process.env.PORT || 4000
 const path = require('path')
 const methodOverride = require('method-override')
 
 // connect to db
 const mongoose = require('mongoose')
-const dbURI = 'mongodb://localhost/todos'
+const dbURI = 'mongodb://admin:admin@ds157390.mlab.com:57390/mymdb'
 mongoose.Promise = global.Promise
 
 // require the controller
