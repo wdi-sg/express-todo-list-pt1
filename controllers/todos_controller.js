@@ -34,16 +34,6 @@ router.route('/todos')
     res.redirect('/todos/' + data.id)
   })
 })
-.delete(function (req, res) {
-  Todo.findOneAndRemove({ _id: req.body.id }, function (err) {
-    if (err) {
-      console.error(err)
-      res.render('index')
-      return
-    }
-  })
-  res.redirect('/todos')
-})
 
 // form routes
 router.get('/todos/new', function (req, res) {
@@ -83,6 +73,16 @@ router.route('/todos/:id')
     }
     res.redirect('/todos/' + req.body.id)
   })
+})
+.delete(function (req, res) {
+  Todo.findOneAndRemove({ _id: req.params.id }, function (err) {
+    if (err) {
+      console.error(err)
+      res.render('index')
+      return
+    }
+  })
+  res.redirect('/todos')
 })
 
 module.exports = router

@@ -22,7 +22,7 @@ app.use(methodOverride('_method'))
 // handle the post request
 const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({extended: false}))
-app.use(bodyParser.json())
+// app.use(bodyParser.json())
 
 if (!mongoose.connection.db) mongoose.connect(dbURI)
 
