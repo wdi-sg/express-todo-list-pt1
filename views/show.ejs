@@ -16,7 +16,7 @@
             <td><%= showTodo.description %></td>
             <td><%= showTodo.completed %></td>
             <td>
-                <form method="POST" action="/showAndUpdateTodo">
+                <form method="GET" action="/todos/<%- showTodo.id %>/edit">
                     <button value=<%- showTodo.id %> name='id'>View/Update</button>
                 </form>
             </td>

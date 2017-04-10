@@ -25,7 +25,7 @@
                             </form>
                         </td>
                         <td>
-                            <form method="POST" action="/showAndUpdateTodo">
+                            <form method="GET" action="/todos/<%- todo.id %>/edit">
                                 <button value=<%- todo.id %> name='id'>View/Update</button>
                             </form>
                         </td>
@@ -64,7 +64,7 @@
                             </form>
                         </td>
                         <td>
-                            <form method="POST" action="/showAndUpdateTodo">
+                            <form method="GET" action="/todos/<%- todo.id %>/edit">
                                 <button value=<%- todo.id %> name='id'>View/Update</button>
                             </form>
                         </td>
