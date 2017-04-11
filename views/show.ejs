@@ -21,7 +21,7 @@
                 </form>
             </td>
             <td>
-                <form method="POST" action="/todos?_method=DELETE">
+                <form method="POST" action="/todos/<%- showTodo.id %>?_method=DELETE">
                     <button value=<%- showTodo.id %> name='id'>Remove</button>
                 </form>
             </td>

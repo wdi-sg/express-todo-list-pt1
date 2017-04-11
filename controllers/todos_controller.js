@@ -7,7 +7,8 @@ router.get('/', function (req, res) {
 })
 
 // index
-router.get('/todos', function (req, res) {
+router.route('/todos')
+.get(function (req, res) {
   Todo.find({}, function (err, data) {
     if (err) {
       console.error(err)
@@ -19,13 +20,7 @@ router.get('/todos', function (req, res) {
     res.render('todos', {todoCompleted: completed, todoNotCompleted: notCompleted})
   })
 })
-
-// create
-router.get('/todos/new', function (req, res) {
-  res.render('new')
-})
-
-router.post('/todos', function (req, res) {
+.post(function (req, res) {
   var newTodo = Todo()
   newTodo.name = req.body.name
   newTodo.description = req.body.description || ''
@@ -40,20 +35,9 @@ router.post('/todos', function (req, res) {
   })
 })
 
-// update/show
-router.get('/todos/:id', function (req, res) {
-  Todo.findById(req.params.id, function (err, data) {
-    if (err) {
-      console.error(err)
-      res.render('index')
-      return
-    }
-    res.render('show', {showTodo: data})
-  })
-})
-
-router.post('/showAndUpdateTodo', function (req, res) {
-  res.redirect('/todos/' + req.body.id + '/edit')
+// route forms
+router.get('/todos/new', function (req, res) {
+  res.render('new')
 })
 
 router.get('/todos/:id/edit', function (req, res) {
@@ -67,6 +51,33 @@ router.get('/todos/:id/edit', function (req, res) {
   })
 })
 
+// update/show
+router.route('/todos/:id')
+.get(function (req, res) {
+  Todo.findById(req.params.id, function (err, data) {
+    if (err) {
+      console.error(err)
+      res.render('index')
+      return
+    }
+    res.render('show', {showTodo: data})
+  })
+})
+.delete(function (req, res) {
+  Todo.findOneAndRemove({ _id: req.params.id }, function (err) {
+    if (err) {
+      console.error(err)
+      res.render('index')
+      return
+    }
+  })
+  res.redirect('/todos')
+})
+
+router.post('/showAndUpdateTodo', function (req, res) {
+  res.redirect('/todos/' + req.body.id + '/edit')
+})
+
 router.put('/todos', function (req, res) {
   console.log(req.body)
   Todo.findOneAndUpdate({ _id: req.body.id }, req.body, function (err, todo) {
@@ -78,18 +89,6 @@ router.put('/todos', function (req, res) {
     // res.redirect('/todos/' + req.body.id)
     res.redirect('/todos')
   })
-})
-
-// remove
-router.delete('/todos', function (req, res) {
-  Todo.findOneAndRemove({ _id: req.body.id }, function (err) {
-    if (err) {
-      console.error(err)
-      res.render('index')
-      return
-    }
-  })
-  res.redirect('/todos')
 })
 
 module.exports = router
