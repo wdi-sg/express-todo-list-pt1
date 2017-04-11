@@ -34,6 +34,17 @@ router.route('/todos')
     res.redirect('/todos/' + data.id)
   })
 })
+.put(function (req, res) {
+  console.log(req.body)
+  Todo.findOneAndUpdate({ _id: req.body.id }, req.body, function (err, todo) {
+    if (err) {
+      console.error(err)
+      res.render('index')
+      return
+    }
+    res.redirect('/todos')
+  })
+})
 
 // form routes
 router.get('/todos/new', function (req, res) {
