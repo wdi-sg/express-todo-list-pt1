@@ -51,7 +51,7 @@ router.get('/todos/:id/edit', function (req, res) {
   })
 })
 
-// show
+// update/show
 router.route('/todos/:id')
 .get(function (req, res) {
   Todo.findById(req.params.id, function (err, data) {
@@ -81,8 +81,8 @@ router.route('/todos/:id')
       res.render('index')
       return
     }
+    res.redirect('/todos')
   })
-  res.redirect('/todos')
 })
 
 module.exports = router
