@@ -6,7 +6,7 @@ const methodOverride = require('method-override')
 
 // connect to db
 const mongoose = require('mongoose')
-const dbURI = 'mongodb://admin:admin@ds157390.mlab.com:57390/mymdb'
+const dbURI = process.env.PROD_MONGODB || 'mongodb://admin:admin@ds157390.mlab.com:57390/mymdb'
 mongoose.Promise = global.Promise
 
 // require the controller
