@@ -6,9 +6,9 @@ This is Part 3 of a series of labs working towards building your first full stac
 - [Part 2 - Mongo todo list](https://github.com/wdi-sg/mongo-todo-list)
 - Part 3 - (this repo)
 - [Part 3.1 - Mocha, Chai and Supertest todo list](https://github.com/wdi-sg/mocha-todo-list) (Optional)
-- [Part 4 - Express todo list pt2](https://github.com/wdi-sg/express-todo-list-pt2)
-- [Part 5 - Multi Model todo list](https://github.com/wdi-sg/multi-model-todo-list)
-- [Part 6 - Users todo list](https://github.com/wdi-sg/users-todo-list)
+- Part 4 - Express todo list pt2
+- Part 5 - Multi Model todo list
+- Part 6 - Users todo list
 
 So far we've built a TODO list application that uses the command line as the user interface. Let's take this a step forward and use what we've learnt about express to create a web server interface. For this version we'll just be working with JSON data to build a RESTful API.
 
